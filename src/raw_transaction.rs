@@ -73,7 +73,7 @@ fn ecdsa_sign(hash: &[u8], private_key: &[u8], CHAIN_ID: &u8) -> EcdsaSig {
     let key = SecretKey::from_slice(&s, private_key).unwrap();
     let (v, sig_bytes) = s.sign_recoverable(&msg, &key).serialize_compact(&s);
 
-    println!("V m8 {:?}", v);
+    println!("S {:?}", sig_bytes[32..64].to_vec());
 
     EcdsaSig {
         v: vec![v.to_i32() as u8 + CHAIN_ID * 2 + 35],
