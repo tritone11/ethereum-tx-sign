@@ -13,12 +13,12 @@ pub struct RawTransaction {
     /// Recipient (None when contract creation)
     pub to: Option<H160>,
     /// Transfered value
-    pub value: String,
+    pub value: U256,
     /// Gas Price
     #[serde(rename = "gasPrice")]
-    pub gas_price: String,
+    pub gas_price: U256,
     /// Gas amount
-    pub gas: String,
+    pub gas: U256,
     /// Input data
     pub data: Vec<u8>
 }
