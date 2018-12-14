@@ -9,7 +9,7 @@ use secp256k1::Secp256k1;
 #[derive(Debug, Default, Clone, PartialEq, Deserialize, Serialize)]
 pub struct RawTransaction {
     /// Nonce
-    pub nonce: H256,
+    pub nonce: U256,
     /// Recipient (None when contract creation)
     pub to: Option<H160>,
     /// Transfered value
