@@ -9,16 +9,16 @@ use secp256k1::Secp256k1;
 #[derive(Debug, Default, Clone, PartialEq, Deserialize, Serialize)]
 pub struct RawTransaction {
     /// Nonce
-    pub nonce: U256,
+    pub nonce: H256,
     /// Recipient (None when contract creation)
     pub to: Option<H160>,
     /// Transfered value
-    pub value: U256,
+    pub value: H256,
     /// Gas Price
     #[serde(rename = "gasPrice")]
-    pub gas_price: U256,
+    pub gas_price: H256,
     /// Gas amount
-    pub gas: U256,
+    pub gas: H256,
     /// Input data
     pub data: Vec<u8>
 }
