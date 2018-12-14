@@ -31,12 +31,14 @@ impl RawTransaction {
         println!("V {:?}",sig.v);
         println!("R {:?}",sig.r);
         println!("S {:?}",sig.s);
-        let R = sig.r;
-        let S = sig.s;
-        if R[0] == 0:
+        let mut R = sig.r;
+        let mut S = sig.s;
+        if R[0] == 0 {
            R.remove(0);
-        if S[0] == 0:
+        }
+        if S[0] == 0 {
            S.remove(0);
+        }
         let mut tx = RlpStream::new(); 
         tx.begin_unbounded_list();
         self.encode(&mut tx);
