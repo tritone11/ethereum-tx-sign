@@ -36,7 +36,6 @@ impl RawTransaction {
         tx.append(&sig.r); 
         tx.append(&sig.s); 
         tx.complete_unbounded_list();
-        println!("{:?}",tx);
         tx.out()
     }
 
