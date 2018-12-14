@@ -28,7 +28,9 @@ impl RawTransaction {
     pub fn sign(&self, private_key: &H256,CHAIN_ID : &u8) -> Vec<u8> {
         let hash = self.hash(*CHAIN_ID);
         let sig = ecdsa_sign(&hash, &private_key.0, &CHAIN_ID);
-        println!("{:?}",sig.s);
+        println!("V {:?}",sig.v);
+        println!("R {:?}",sig.r);
+        println!("S {:?}",sig.s);
         let mut tx = RlpStream::new(); 
         tx.begin_unbounded_list();
         self.encode(&mut tx);
@@ -74,7 +76,7 @@ fn ecdsa_sign(hash: &[u8], private_key: &[u8], CHAIN_ID: &u8) -> EcdsaSig {
     let key = SecretKey::from_slice(&s, private_key).unwrap();
     let (v, sig_bytes) = s.sign_recoverable(&msg, &key).serialize_compact(&s);
 
-    println!("S {:?}", sig_bytes[32..64].to_vec());
+    //println!("S {:?}", sig_bytes[32..64].to_vec());
 
     EcdsaSig {
         v: vec![v.to_i32() as u8 + CHAIN_ID * 2 + 35],
