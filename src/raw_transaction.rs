@@ -33,10 +33,10 @@ impl RawTransaction {
         println!("S {:?}",sig.s);
         let mut R = sig.r;
         let mut S = sig.s;
-        if R[0] == 0 {
+        while R[0] != 0 {
            R.remove(0);
         }
-        if S[0] == 0 {
+        while S[0] != 0 {
            S.remove(0);
         }
         let mut tx = RlpStream::new(); 
