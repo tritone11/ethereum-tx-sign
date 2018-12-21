@@ -53,7 +53,7 @@ impl RawTransaction {
         let mut hash = RlpStream::new(); 
         hash.begin_unbounded_list();
         self.encode(&mut hash);
-        hash.append(&mut vec![CHAIN_ID]);
+        //hash.append(&mut vec![CHAIN_ID]);
         hash.append(&mut U256::zero());
         hash.append(&mut U256::zero());
         hash.complete_unbounded_list();
