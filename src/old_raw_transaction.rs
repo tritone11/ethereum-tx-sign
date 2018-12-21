@@ -23,7 +23,7 @@ pub struct OldRawTransaction {
     pub data: Vec<u8>
 }
 
-impl RawTransaction {
+impl OldRawTransaction {
     /// Signs and returns the RLP-encoded transaction
     pub fn sign(&self, private_key: &H256) -> Vec<u8> {
         let hash = self.hash();
@@ -75,7 +75,7 @@ fn keccak256_hash(bytes: &[u8]) -> Vec<u8> {
     keccak256(bytes).into_iter().cloned().collect()
 }
 
-fn ecdsa_sign(hash: &[u8], private_key: &[u8], CHAIN_ID: &u8) -> EcdsaSig {
+fn ecdsa_sign(hash: &[u8], private_key: &[u8]) -> EcdsaSig {
     let s = Secp256k1::signing_only();
     let msg = Message::from_slice(hash).unwrap();
     let key = SecretKey::from_slice(&s, private_key).unwrap();
