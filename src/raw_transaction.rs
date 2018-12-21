@@ -53,7 +53,7 @@ impl RawTransaction {
         let mut hash = RlpStream::new(); 
         hash.begin_unbounded_list();
         self.encode(&mut hash);
-        //hash.append(&mut vec![CHAIN_ID]);
+        hash.append(&mut vec![CHAIN_ID]);
         hash.append(&mut U256::zero());
         hash.append(&mut U256::zero());
         hash.complete_unbounded_list();
@@ -87,7 +87,7 @@ fn ecdsa_sign(hash: &[u8], private_key: &[u8], CHAIN_ID: &u8) -> EcdsaSig {
     //println!("S {:?}", sig_bytes[32..64].to_vec());
     // EIP155 implementation v: vec![v.to_i32() as u8 + CHAIN_ID * 2 + 35],
     EcdsaSig {
-        v: vec![v.to_i32() as u8 + 28],
+        v: vec![v.to_i32() as u8 + CHAIN_ID * 2 + 35],
         r: sig_bytes[0..32].to_vec(),
         s: sig_bytes[32..64].to_vec(),
     }
