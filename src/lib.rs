@@ -9,5 +9,7 @@ extern crate secp256k1;
 extern crate rlp;
 
 mod raw_transaction;
+mod old_raw_transaction;
 
 pub use self::raw_transaction::RawTransaction;
+pub use self::old_raw_transaction::OldRawTransaction;
