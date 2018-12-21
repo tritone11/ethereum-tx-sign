@@ -20,7 +20,7 @@ pub struct RawTransaction {
     /// Gas amount
     pub gas: U256,
     /// Input data
-    pub data: String
+    pub data: Vec<u8>
 }
 
 impl RawTransaction {
