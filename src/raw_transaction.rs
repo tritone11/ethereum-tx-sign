@@ -30,10 +30,10 @@ impl RawTransaction {
         let sig = ecdsa_sign(&hash, &private_key.0, &chain_id);
         let mut R = sig.r;		
 	      let mut S = sig.s;		
-	      if R[0] == 0 {		
+	      while R[0] == 0 {		
 	         R.remove(0);		
 	      }		
-	      if S[0] == 0 {		
+	      while S[0] == 0 {		
 	         S.remove(0);		
 	      }
         let mut tx = RlpStream::new(); 
